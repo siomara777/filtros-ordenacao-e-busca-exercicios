@@ -2,6 +2,8 @@ import React from "react";
 import { Container } from "./styles";
 
 const Header = (props) => {
+console.log(props.orderSelected)
+
   const pokemontypesArray = [
     "Normal",
     "Fire",
@@ -27,13 +29,22 @@ const Header = (props) => {
     props.setPesquisa(e.target.value);
   };
 
-   const handleIdSearch = (e) => {
+  const handleIdSearch = (e) => {
     props.setIdFilter(e.target.value);
+  };
+
+  const handleSetect = (e) => {
+props.setTypeSelected(e.target.value)
+
+
+  }
+  const handleOrderSelected = (e) => {
+    props.setOrderSelected(e.target.value);
   };
 
   return (
     <Container>
-        <input
+      <input
         type="number"
         placeholder="Buscar por id"
         onChange={handleIdSearch}
@@ -45,15 +56,14 @@ const Header = (props) => {
         onChange={handleSearch}
         value={props.pesquisa}
       />
-      <select>
-        <option value="">Ordenar</option>
-        <option value="">Crescente</option>
-        <option value="">Decrescente</option>
+      <select value={props.orderSelected} onChange={handleOrderSelected}>
+        
+        <option value="ord">Ordenar</option>
+        <option value="asc">Crescente</option>
+        <option value="desc">Decrescente</option>
       </select>
-      <select
-        name="tipo"
-        id="tipo"
-          >
+      <select value={props.typeSelected} onChange={handleSetect} name="tipo" id="tipo">
+
         <option value="">Selecione um tipo</option>
         {pokemontypesArray.map((type) => {
           return (
